@@ -1,4 +1,4 @@
-package com.pacrombie.ultimatebravery.downstream.scryfall;
+package com.pacrombie.mtgenerator.downstream.scryfall;
 
 import lombok.Data;
 import lombok.Getter;

@@ -1,14 +1,11 @@
-package com.pacrombie.ultimatebravery.service;
+package com.pacrombie.mtgenerator.service;
 
-import com.pacrombie.ultimatebravery.downstream.scryfall.ScryfallRestClient;
-import com.pacrombie.ultimatebravery.model.CardEntity;
-import com.pacrombie.ultimatebravery.model.DeckRequest;
-import com.pacrombie.ultimatebravery.model.ScryfallCardData;
-import com.pacrombie.ultimatebravery.repository.CardRepository;
+import com.pacrombie.mtgenerator.downstream.scryfall.ScryfallRestClient;
+import com.pacrombie.mtgenerator.model.CardEntity;
+import com.pacrombie.mtgenerator.model.ScryfallCardData;
+import com.pacrombie.mtgenerator.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -18,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UltimateBraveryService {
+public class MTGeneratorService {
 
     private final CardRepository cardRepository;
     private final ScryfallRestClient scryfallRestClient;

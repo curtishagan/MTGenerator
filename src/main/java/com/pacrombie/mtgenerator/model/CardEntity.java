@@ -1,4 +1,4 @@
-package com.pacrombie.ultimatebravery.model;
+package com.pacrombie.mtgenerator.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

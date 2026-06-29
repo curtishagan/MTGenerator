@@ -1,9 +1,9 @@
-package com.pacrombie.ultimatebravery.downstream.scryfall;
+package com.pacrombie.mtgenerator.downstream.scryfall;
 
-import com.pacrombie.ultimatebravery.model.ScryfallBulkData;
-import com.pacrombie.ultimatebravery.model.ScryfallBulkDataResponse;
-import com.pacrombie.ultimatebravery.model.ScryfallCardData;
-import com.pacrombie.ultimatebravery.repository.CardRepository;
+import com.pacrombie.mtgenerator.model.ScryfallBulkData;
+import com.pacrombie.mtgenerator.model.ScryfallBulkDataResponse;
+import com.pacrombie.mtgenerator.model.ScryfallCardData;
+import com.pacrombie.mtgenerator.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

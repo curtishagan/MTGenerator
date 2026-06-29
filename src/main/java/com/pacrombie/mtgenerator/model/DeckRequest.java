@@ -1,4 +1,4 @@
-package com.pacrombie.ultimatebravery.model;
+package com.pacrombie.mtgenerator.model;
 
 import lombok.Data;
 

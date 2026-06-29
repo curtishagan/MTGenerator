@@ -1,14 +1,12 @@
-package com.pacrombie.ultimatebravery.controller;
+package com.pacrombie.mtgenerator.controller;
 
-import com.pacrombie.ultimatebravery.service.UltimateBraveryService;
+import com.pacrombie.mtgenerator.service.MTGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.pacrombie.ultimatebravery.model.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -16,12 +14,12 @@ import com.pacrombie.ultimatebravery.model.*;
 public class UltimateBraveryRestController {
 
     @Autowired
-    private UltimateBraveryService ultimateBraveryService;
+    private MTGeneratorService MTGeneratorService;
 
     @GetMapping("deck")
     public ResponseEntity<String> getDeck() {
 
-        return ResponseEntity.ok(ultimateBraveryService.generateDeck());
+        return ResponseEntity.ok(MTGeneratorService.generateDeck());
     }
 
 }

@@ -1,6 +1,6 @@
-package com.pacrombie.ultimatebravery.repository;
+package com.pacrombie.mtgenerator.repository;
 
-import com.pacrombie.ultimatebravery.model.CardEntity;
+import com.pacrombie.mtgenerator.model.CardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

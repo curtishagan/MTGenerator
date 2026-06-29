@@ -1,13 +1,13 @@
-package com.pacrombie.ultimatebravery;
+package com.pacrombie.mtgenerator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UltimateBraveryApplication {
+public class MTGeneratorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UltimateBraveryApplication.class, args);
+		SpringApplication.run(MTGeneratorApplication.class, args);
 	}
 
 }

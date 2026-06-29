@@ -1,7 +1,6 @@
-package com.pacrombie.ultimatebravery.model;
+package com.pacrombie.mtgenerator.model;
 
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;

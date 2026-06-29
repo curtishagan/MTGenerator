@@ -1,6 +1,6 @@
-package com.pacrombie.ultimatebravery.config;
+package com.pacrombie.mtgenerator.config;
 
-import com.pacrombie.ultimatebravery.service.UltimateBraveryService;
+import com.pacrombie.mtgenerator.service.MTGeneratorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ScryfallStartupRunner implements ApplicationRunner {
 
-    private final UltimateBraveryService ultimateBraveryService;
+    private final MTGeneratorService MTGeneratorService;
 
     @Override
     public void run(ApplicationArguments args) {
-        ultimateBraveryService.importScryfallCards();
+        MTGeneratorService.importScryfallCards();
     }
 }

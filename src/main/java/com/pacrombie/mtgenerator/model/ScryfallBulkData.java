@@ -1,4 +1,4 @@
-package com.pacrombie.ultimatebravery.model;
+package com.pacrombie.mtgenerator.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

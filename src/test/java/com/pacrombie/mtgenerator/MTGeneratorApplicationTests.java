@@ -1,10 +1,10 @@
-package com.pacrombie.ultimatebravery;
+package com.pacrombie.mtgenerator;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UltimateBraveryApplicationTests {
+class MTGeneratorApplicationTests {
 
 	@Test
 	void contextLoads() {
