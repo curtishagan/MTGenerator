@@ -31,6 +31,8 @@ public class ScryfallCardData {
     @JsonProperty("produced_mana")
     private Set<String> producedMana;
 
+    private String layout;
+
     private Map<String, String> legalities;
 
 }

@@ -28,4 +28,5 @@ public class CardEntity {
     private Set<String> producedMana;
 
     private Boolean commanderLegal;
+    private String layout;
 }

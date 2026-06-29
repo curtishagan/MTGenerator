@@ -52,6 +52,7 @@ public class ScryfallImportService {
         entity.setOracleText(card.getOracleText());
         entity.setColorIdentity(card.getColorIdentity());
         entity.setProducedMana(card.getProducedMana());
+        entity.setLayout(card.getLayout());
 
         entity.setCommanderLegal(
                 card.getLegalities() != null
