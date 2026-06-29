@@ -8,9 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -20,48 +20,115 @@ public class MTGeneratorService {
     private final CardRepository cardRepository;
     private final ScryfallRestClient scryfallRestClient;
 
-    public void importScryfallCards() {
-
-        log.info("Downloading from Scryfall...");
-
-        ScryfallCardData[] cards = scryfallRestClient.getCardData();
-
-        if (cards == null) {
-            throw new IllegalStateException("No cards downloaded from Scryfall");
-        }
-
-        List<CardEntity> entities = Arrays.stream(cards)
-                .filter(card -> card.getLegalities() != null)
-                .filter(card -> "legal".equals(card.getLegalities().get("commander")))
-                .map(this::toEntity)
-                .toList();
-
-        log.info("Starting save...");
-        cardRepository.saveAll(entities);
-        log.info("All " + entities.size() + " cards saved!");
-
-    }
-
     public String generateDeck() {
 
-        List<CardEntity> cards = cardRepository.findByCommanderLegalTrue();
+        List<String> deckList = new ArrayList<>();
 
-        String deckList = cards.get(ThreadLocalRandom.current().nextInt(cards.size())).getName();
+        CardEntity commander = getRandomCommander();
 
-        return deckList;
+        deckList.add(commander.getName());
+        deckList.addAll(generateManaBase(36, commander.getColorIdentity()));
+        deckList.addAll(generateNonLands(63, commander));
+
+        return formatDeckList(deckList);
     }
 
-    private CardEntity toEntity(ScryfallCardData card) {
-        CardEntity entity = new CardEntity();
+    private CardEntity getRandomCommander() {
 
-        entity.setId(card.getId());
-        entity.setName(card.getName());
+        List<CardEntity> candidates = new ArrayList<>();
 
-        entity.setCommanderLegal(
-                card.getLegalities() != null
-                        && "legal".equals(card.getLegalities().get("commander"))
+        // All Legendary Creatures
+        candidates.addAll(cardRepository.findByCommanderLegalTrue()
+                .stream()
+                .filter(card -> card.getTypeLine().contains("Legendary"))
+                .filter(card -> card.getTypeLine().contains("Creature"))
+                .toList()
         );
 
-        return entity;
+        // Planeswalkers
+        candidates.addAll(cardRepository.findByCommanderLegalTrue()
+                .stream()
+                .filter(card -> card.getOracleText() != null)
+                .filter(card -> card.getOracleText()
+                        .toLowerCase()
+                        .contains("can be your commander"))
+                .toList()
+        );
+
+        if (candidates.isEmpty()) {
+            throw new IllegalStateException("No commanders found.");
+        }
+
+        return candidates.get(
+                ThreadLocalRandom.current().nextInt(candidates.size())
+        );
+    }
+
+    private List<String> generateManaBase(int landCount, Set<String> colorIdentity) {
+
+        if (colorIdentity.isEmpty()) {
+            return List.of(landCount + " Wastes");
+        }
+
+        Map<String, String> basicLandByColor = Map.of(
+                "W", "Plains",
+                "U", "Island",
+                "B", "Swamp",
+                "R", "Mountain",
+                "G", "Forest"
+        );
+
+        List<String> lands = new ArrayList<>();
+
+        int landsPerColor = landCount / colorIdentity.size();
+        int remainder = landCount % colorIdentity.size();
+
+        for (String color : colorIdentity) {
+            String landName = basicLandByColor.get(color);
+
+            int count = landsPerColor;
+
+            if (remainder > 0) {
+                count++;
+                remainder--;
+            }
+
+            lands.add(count + " " + landName);
+        }
+
+        return lands;
+    }
+
+    private List<String> generateNonLands(int cardCount, CardEntity commander) {
+
+        List<CardEntity> candidates = cardRepository.findByCommanderLegalTrue()
+                .stream()
+                .filter(card -> !card.getId().equals(commander.getId()))
+                .filter(card -> card.getTypeLine() != null)
+                .filter(card -> !card.getTypeLine().contains("Land"))
+                .filter(card -> commander.getColorIdentity().containsAll(card.getColorIdentity()))
+                .distinct()
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        Collections.shuffle(candidates);
+
+        return candidates.stream()
+                .limit(63)
+                .map(CardEntity::getName)
+                .toList();
+    }
+
+    private String formatDeckList(List<String> deckList) {
+        String deckListString = "";
+
+        for (String card : deckList) {
+            if (!card.matches("^(100|[1-9][0-9]?)\\b.*"))
+                deckListString = deckListString.concat("1 ");
+
+            deckListString = deckListString.concat(card);
+            deckListString = deckListString.concat("\n");
+        }
+
+        return deckListString;
     }
 }

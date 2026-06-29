@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -22,7 +24,8 @@ public class CardEntity {
     @Column(length = 5000)
     private String oracleText;
 
-    private String colorIdentity;
+    private Set<String> colorIdentity;
+    private Set<String> producedMana;
 
     private Boolean commanderLegal;
 }
