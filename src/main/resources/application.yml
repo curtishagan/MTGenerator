@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: "ultimatebravery"
+    datasource:
+      url: jdbc:h2:mem:mtgdb
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+  h2:
+    console:
+      enabled: true
+
+com:
+  pacrombie:
+    ultimatebravery:
+      scryfall:
+        base-url: "https://api.scryfall.com"
