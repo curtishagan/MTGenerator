@@ -21,6 +21,6 @@ public class SharedCommanderTagScoringRule implements CardScoringRule {
         Set<String> sharedTags = new HashSet<>(card.getOracleTags());
         sharedTags.retainAll(context.getCommander().getOracleTags());
 
-        return sharedTags.size();
+        return sharedTags.size() * 3;
     }
 }
