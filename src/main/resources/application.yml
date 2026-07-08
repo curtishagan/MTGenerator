@@ -1,15 +1,14 @@
 spring:
   application:
     name: "MTGenerator"
-    datasource:
-      url: jdbc:h2:mem:mtgdb
-      driver-class-name: org.h2.Driver
-      username: sa
-      password:
-
+  datasource:
+    url: jdbc:h2:file:./data/mtgenerator
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
   h2:
     console:

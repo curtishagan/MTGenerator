@@ -12,6 +12,10 @@ import java.util.UUID;
 public class ScryfallCardData {
 
     private UUID id;
+
+    @JsonProperty("oracle_id")
+    private String oracleId;
+
     private String name;
 
     @JsonProperty("mana_cost")
