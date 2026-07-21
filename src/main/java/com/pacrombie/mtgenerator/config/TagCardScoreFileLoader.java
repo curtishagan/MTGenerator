@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class TagCardScoreFileLoader {
 
-    private static final String FILE_NAME = "TagCardScores.csv";
+    private static final String FILE_NAME = "TagCardScore.csv";
 
     public Map<String, Integer> loadTagScores() {
         Map<String, Integer> scores = new HashMap<>();

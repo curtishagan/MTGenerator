@@ -112,6 +112,7 @@ public class ScryfallImportService {
         entity.setProducedMana(card.getProducedMana());
         entity.setLayout(card.getLayout());
         entity.setOracleTags(new HashSet<>());
+        entity.setEdhrecRank(card.getEdhrecRank());
 
         entity.setCommanderLegal(
                 card.getLegalities() != null

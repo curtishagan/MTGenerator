@@ -28,6 +28,8 @@ public class CardEntity {
     private Set<String> colorIdentity;
     private Set<String> producedMana;
 
+    private Integer edhrecRank;
+
     private Boolean commanderLegal;
     private String layout;
 

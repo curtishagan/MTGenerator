@@ -35,6 +35,9 @@ public class ScryfallCardData {
     @JsonProperty("produced_mana")
     private Set<String> producedMana;
 
+    @JsonProperty("edhrec_rank")
+    private Integer edhrecRank;
+
     private String layout;
 
     private Map<String, String> legalities;
