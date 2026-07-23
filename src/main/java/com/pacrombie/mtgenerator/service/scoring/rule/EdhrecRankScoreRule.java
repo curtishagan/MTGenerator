@@ -16,23 +16,23 @@ public class EdhrecRankScoreRule implements CardScoringRule {
         }
 
         if (rank <= 100) {
-            return 30;
+            return 5;
         }
 
         if (rank <= 500) {
-            return 20;
+            return 4;
         }
 
         if (rank <= 2_000) {
-            return 12;
+            return 3;
         }
 
         if (rank <= 5_000) {
-            return 7;
+            return 2;
         }
 
         if (rank <= 10_000) {
-            return 3;
+            return 1;
         }
 
         return 0;
